@@ -26,6 +26,321 @@ REQUIRE_ONCE('../CONEXION/CONEXION.PHP');
 
   <body id="loginbody">
 
+<style>
+    body {
+    margin: 0;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-attachment: fixed; 
+    background-color: rgba(235, 235, 239, 0.5); 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    padding-top: 120px; /* Ajusta para que no se monte sobre la navbar */
+    padding-bottom: 80px; /* Ajusta para que no se monte sobre el footer */
+}
+
+#BODYSITO{
+    width: 100%; 
+    height: 700px;
+}
+/*SCROOLLLLLL*/
+:root {
+    scroll-behavior: smooth;
+  }
+
+/*NAV*/
+
+.navbar {
+    background-color: #fd5d1d;
+    padding: 10px 20px;
+    color: white;
+    font-weight: bold;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: inline-block;
+    align-items: center;
+    height: 100px;
+    transition: all 0.5s;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.navbar-brand img, .center-title img {
+    width: 90px; /* Corrige tamaño de imagen */
+    height: 90px;
+    object-fit: contain;
+}
+
+.navbar-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    color: #ddd;
+}
+
+.BotonInSe {
+    background-color: rgb(255, 225, 0);
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.BotonInSe:hover {
+    background-color: orange;
+    color: white;
+}
+
+button#volverlistado {
+    background-color: rgb(255, 225, 0);
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button#volverlistado:hover {
+    background-color: orange;
+    color: white;
+}
+
+/* Estilos para el dropdown */
+.nav-item {
+    position: relative; /* Permite posicionar el menú desplegable respecto al contenedor */
+}
+
+.dropdown-toggle {
+    cursor: pointer; /* Cambia el cursor para indicar que es interactivo */
+}
+
+.dropdown-menu {
+    display: none; /* Oculta el menú por defecto */
+    position: absolute; /* Posición relativa al contenedor padre */
+    top: 100%; /* Aparece justo debajo del enlace */
+    left: 0;
+    background-color: #fff; /* Fondo blanco para el menú */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    list-style: none;
+    z-index: 1000;
+}
+
+.dropdown-menu li {
+    padding: 5px 15px;
+}
+
+.dropdown-menu li a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f4f4f4;
+    color: #000;
+}
+
+/* Mostrar el menú desplegable al hacer hover */
+.nav-item:hover .dropdown-menu {
+    display: block; /* Muestra el menú desplegable */
+}
+/*FOOTER*/
+
+.footer {
+    background-color: #fd5d1d;
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+    transition: all 0.5s;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 10px;
+}
+
+.footer-section h5 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color:bisque ;
+}
+
+
+.footer-bottom {
+    background-color: #b03402;
+    padding: 10px;
+    font-size: 0.8em;
+    color: #cccccc;
+}
+
+.footer-section i{
+    color: white;
+}
+
+.footer-section i:hover{
+    transform: scale(2); 
+    z-index: 100;
+}
+
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-section {
+        margin-bottom: 20px;
+    }
+}
+
+
+
+/* Contenedor de "NOSOTROS" */
+#nosotros {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #fd5d1d;
+    padding: 20px;
+    margin: auto;
+    max-width: 80%;
+    border-radius: 10px;
+   
+}
+
+.connosotros {
+    color: white;
+    margin-right: 20px;
+}
+
+.imagennosotros img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.vertical-image {
+    max-height: 300px;
+}
+
+/* Estilos de la sección productos */
+#productos {
+    text-align: center;
+    margin: auto;
+    padding: 20px;
+}
+
+.productos-titulo {
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+.productos-contenedor {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.producto-item {
+    position: relative;
+    width: 300px;
+    overflow: hidden;
+    margin: 10px; /* Ajusta el margen para mejor alineación */
+}
+
+
+.producto-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.producto-item:hover .producto-img {
+    transform: scale(1.05);
+}
+
+.producto-hover-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    font-size: 0.9em;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.producto-item:hover .producto-hover-text {
+    opacity: 1;
+}
+
+
+@media (max-width: 768px) {
+    .productos-contenedor {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .producto-item {
+        margin: 10px auto;
+    }
+
+    .imagennosotros img {
+        max-height: 250px;
+    }
+}
+</style>
+
+    
+
   <br><br><br><br><br><br><br>
 
 
