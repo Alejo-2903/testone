@@ -1,0 +1,647 @@
+<?php
+SESSION_START();
+REQUIRE_ONCE('../CONEXION/CONEXION.PHP');
+?>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> INSERTAR CLIENTE </title>
+    <link rel="stylesheet" href="../CSS/ESTILOS.CSS">
+
+  </head>
+
+  <nav class="navbar">
+    <div class="container">
+
+        <h4 class="center-title"><img src="LOGONAV.png" alt=""  widht="90px", height="90px"></h4>
+
+        
+        <div class="navbar-nav right">
+            </div>
+    </div>
+</nav>
+
+  <body id="loginbody">
+
+    <style>
+        body {
+            margin: 0;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            background-attachment: fixed; 
+            background-color: rgba(235, 235, 239, 0.5); 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding-top: 120px; /* Ajusta para que no se monte sobre la navbar */
+            padding-bottom: 80px; /* Ajusta para que no se monte sobre el footer */
+        }
+        
+        #BODYSITO{
+            width: 100%; 
+            height: 700px;
+        }
+        
+        /*SCROOLLLLLL*/
+        :root {
+            scroll-behavior: smooth;
+          }
+        
+        /*NAV*/
+        
+        .navbar {
+            background-color: #fd5d1d;
+            padding: 10px 20px;
+            color: white;
+            font-weight: bold;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: inline-block;
+            align-items: center;
+            height: 100px;
+            transition: all 0.5s;
+            box-sizing: border-box;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 100%;
+        }
+        
+        .navbar-brand img, .center-title img {
+            width: 90px; /* Corrige tamaño de imagen */
+            height: 90px;
+            object-fit: contain;
+        }
+        
+        .navbar-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+        
+        .nav-link:hover {
+            text-decoration: underline;
+            color: #ddd;
+        }
+        
+        .BotonInSe {
+            background-color: rgb(255, 225, 0);
+            color: black;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .BotonInSe:hover {
+            background-color: orange;
+            color: white;
+        }
+        
+        button#volverlistado {
+            background-color: rgb(255, 225, 0);
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        button#volverlistado:hover {
+            background-color: orange;
+            color: white;
+        }
+        
+        /* Estilos para el dropdown */
+        .nav-item {
+            position: relative; /* Permite posicionar el menú desplegable respecto al contenedor */
+        }
+        
+        .dropdown-toggle {
+            cursor: pointer; /* Cambia el cursor para indicar que es interactivo */
+        }
+        
+        .dropdown-menu {
+            display: none; /* Oculta el menú por defecto */
+            position: absolute; /* Posición relativa al contenedor padre */
+            top: 100%; /* Aparece justo debajo del enlace */
+            left: 0;
+            background-color: #fff; /* Fondo blanco para el menú */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            list-style: none;
+            z-index: 1000;
+        }
+        
+        .dropdown-menu li {
+            padding: 5px 15px;
+        }
+        
+        .dropdown-menu li a {
+            color: #333;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .dropdown-menu li a:hover {
+            background-color: #f4f4f4;
+            color: #000;
+        }
+        
+        /* Mostrar el menú desplegable al hacer hover */
+        .nav-item:hover .dropdown-menu {
+            display: block; /* Muestra el menú desplegable */
+        }
+        
+        
+        /*NAV 2 */
+        
+        .navbarC {
+            background-color: #fd5d1d;
+            padding: 10px 20px;
+            color: white;
+            font-weight: bold;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: inline-block;
+            align-items: center;
+            height: 100px;
+            transition: all 0.5s;
+            box-sizing: border-box;
+        }
+        
+        .containerC {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 100%;
+        }
+        
+        .navbar-brandC img, .center-titleC img {
+            width: 90px; /* Corrige tamaño de imagen */
+            height: 90px;
+            object-fit: contain;
+        }
+        
+        .navbar-navC {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .nav-linkC {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+        
+        .nav-linkC:hover {
+            text-decoration: underline;
+            color: #ddd;
+        }
+        /* LISTADOS*/
+        .listado {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px;
+        }
+        
+        .listado h2 {
+            margin: 0;
+            font-size: 24px;
+            font-family: Arial, sans-serif;
+        }
+        
+        #volverlistado {
+            padding: 10px 15px; 
+            background-color: rgb(255, 225, 0); 
+            border: none; 
+            border-radius: 5px; 
+            color: black;
+            font-size: 18px;
+            cursor: pointer; 
+            transition: background-color 0.3s ease;
+            display: inline-flex; 
+            align-items: center; 
+            height: 50px;
+            width: 50px;
+        }
+        
+        #volverlistado:hover {
+            background-color: #fa6429; 
+        }
+        
+        /*FOOTER*/
+        
+        .footer {
+            background-color: #fd5d1d;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            transition: all 0.5s;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            margin: 10px;
+        }
+        
+        .footer-section h5 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color:bisque ;
+        }
+        
+        
+        .footer-bottom {
+            background-color: #b03402;
+            padding: 10px;
+            font-size: 0.8em;
+            color: #cccccc;
+        }
+        
+        .footer-section i{
+            color: white;
+        }
+        
+        .footer-section i:hover{
+            transform: scale(2); 
+            z-index: 100;
+        }
+        
+        
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        
+            .footer-section {
+                margin-bottom: 20px;
+            }
+        }
+        
+        
+        
+        /* Contenedor de "NOSOTROS" */
+        #nosotros {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #fd5d1d;
+            padding: 20px;
+            margin: auto;
+            max-width: 80%;
+            border-radius: 10px;
+           
+        }
+        
+        .connosotros {
+            color: white;
+            margin-right: 20px;
+        }
+        
+        .imagennosotros img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        
+        .vertical-image {
+            max-height: 300px;
+        }
+        
+        /* Estilos de la sección productos */
+        #productos {
+            text-align: center;
+            margin: auto;
+            padding: 20px;
+        }
+        
+        .productos-titulo {
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        
+        .productos-contenedor {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .producto-item {
+            position: relative;
+            width: 300px;
+            overflow: hidden;
+            margin: 10px; /* Ajusta el margen para mejor alineación */
+        }
+        
+        
+        .producto-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .producto-item:hover .producto-img {
+            transform: scale(1.05);
+        }
+        
+        .producto-hover-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            font-size: 0.9em;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        .producto-item:hover .producto-hover-text {
+            opacity: 1;
+        }
+        
+        
+        @media (max-width: 768px) {
+            .productos-contenedor {
+                flex-direction: column;
+                align-items: center;
+            }
+        
+            .producto-item {
+                margin: 10px auto;
+            }
+        
+            .imagennosotros img {
+                max-height: 250px;
+            }
+        }
+        /* Estilos del formulario de login */
+        #login {
+            border: 1px solid #fd5d1d;
+            width: 500px;
+            min-height: 550px;
+            background-color: #f1f1f1;
+            color: #fd5d1d;
+            border-radius: 20px;
+            box-shadow: 0px 0px 20px #fd5d1d;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            justify-content: center;
+            transform: translate(-50%);
+            left: 50%;
+            bottom: -10px;
+            position: relative;
+        }
+        
+        #LOGIN {
+            display: block;
+            box-sizing: border-box;
+            padding: 30px;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            display: flex;
+            gap: 5px;
+        }
+        
+        .Inicio {
+            font-weight: bold;
+            font-size: 24px;
+            text-shadow: 0px 0px 2px #fd5d1d;
+            margin-bottom: 60px;
+            margin-left: 100px;
+        }
+        
+        label {
+            color: #fd5d1d;
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 2px;
+            padding-left: 10px;
+        }
+        
+        input {
+            background: #fd5d1d(255, 255, 255, 0.3);
+            height: 40px;
+            line-height: 40px;
+            border-radius: 20px;
+            padding: 0px 20px;
+            border: none;
+            margin-bottom: 20px;
+            color: #fd5d1d;
+        }
+        
+        #button1 {
+            color: #000000 !important;
+            background: #fd5d1d !important; 
+            border-color: #fd5d1d !important;
+            height: 40px;
+            width: 190px;
+            line-height: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 5px #fd5d1d;
+            float: left;
+            margin-left: 110px;
+            margin-top: 20px;
+        }
+        
+        #button1:hover {
+            background-color: #fd5d1d;
+        }
+        
+        #CCLOGIN {
+            font-size: 20px;
+        }
+        
+        #RECUPERAR {
+            text-decoration: none;
+            color: #fd5d1d;
+        }
+        
+        /* Tabla de clientes */
+        .tablacliente {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px;
+            background-color: white;
+            opacity: 1;
+            border: 2px solid #fd5d1d; /* Borde alrededor de la tabla */
+        }
+        
+        .tablacliente thead {
+            background-color: #fd5d1d;
+            color: white;
+        }
+        
+        .tablacliente th, .tablacliente td {
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 16px;
+            border: 1px solid #fd5d1d; /* Borde para las celdas */
+        }
+        
+        .tablacliente tr:hover {
+            background-color: #f1f1f1;
+            color: black;
+        }
+        
+        .tablacliente a {
+            color: #fd5d1d;
+            text-decoration: none;
+        }
+        
+        .tablacliente a:hover {
+            text-decoration: underline;
+            color: #fd5d1d;
+        }
+        
+        /*NOTIFICACIONES*/
+        .notificaciones-container {
+                    max-width: 600px;
+                    margin: 20px auto;
+                    background-color: #ffffff;
+                    border-radius: 10px;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                    padding: 20px;
+                }
+        
+                ul {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                }
+        
+                li {
+                    background-color: #f4f4f4;
+                    margin: 10px 0;
+                    padding: 15px;
+                    border-radius: 5px;
+                    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                    font-size: 14px;
+                    color: #555;
+                }
+        
+                li:hover {
+                    background-color: #e8e8e8;
+                }
+        
+                .no-notificaciones {
+                    text-align: center;
+                    color: #777;
+                    font-size: 14px;
+                }
+        
+        </style>
+
+
+  <br><br><br><br><br><br><br>
+
+
+<div id="login">
+<form id="LOGIN" ACTION="" METHOD="POST" ENCTYPE="MULTIPART/FORM-DATA">
+    <h1 class="Inicio">REGISTRARSE</h1>
+
+    
+    <label id="CCLOGIN">NOMBRES:</label>
+        <input type="text" NAME="TXTNOMBRE" placeholder="Nombres" required>
+    <label id="CCLOGIN">DOCUMENTO:</label>
+        <input type="text" NAME="TXTDOC" placeholder="Documento" required>
+    <label id="CCLOGIN">CORREO:</label>
+        <input type="email" NAME="TXTCORREO" placeholder="CORREO" required>
+    <label id="CCLOGIN">TELEFONO:</label>
+        <input type="text" NAME="TXTTELEFONO" placeholder="TELEFONO" required>
+    <label id="CCLOGIN">CONTRASEÑA:</label>
+        <input TYPE= "PASSWORD" NAME="TXTPSW" placeholder="CONTRASEÑA" required> 
+    <button id="button1">ENVIAR</button>
+
+
+</form>
+</div>
+    
+</body>
+<br><br>
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section about">
+          <img src="LOGONAV.png" alt="Logo de la Empresa" width="200px", height="200px">
+        </div>
+
+        <div class="footer-section contact">
+        <h5>EMPANADAS BUEN GUSTO</h5>
+          <p><i class="fa-solid fa-person"></i>: Alejandro Otoniel Camargo Pabón</p>
+          <p><i class="fa-solid fa-location-dot"></i>: Cra 10#6-64, Tunja, Colombia</p>
+          <p><i class="fa-solid fa-phone"></i>: 320 300 7631</p>
+          <p><i class="fa-solid fa-envelope"></i>: ottocamargo21@gmail.com</p>
+        </div>
+
+        <div class="footer-section links">
+          <h5>Redes Sociales</h5><br>
+            <a href="https://www.facebook.com/fredyalejandro.camargoleguizamopn.9?mibextid=ZbWKwL" class="text-reset">
+              <i class="fa-brands fa-facebook"></i>
+            </a><br><br>
+            <a href="https://wa.me/qr/SUPQHGT6OXOOL1" class="text-reset">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a><br><br>
+            <a href="https://www.instagram.com/alejo.13_29/profilecard/?igsh=MTBzb2o5YXJzNzgwOA==" class="text-reset">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+        </div>
+        
+        </div>
+          <div class="footer-bottom">
+          <i class="fa-regular fa-copyright"></i> ; 2024 Empanada Buen Gusto | Todos los derechos reservados
+        </div>
+</footer>
+
+
+</html>
