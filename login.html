@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+    <link rel="stylesheet" href="../CSS/ESTILOS.CSS">
+</head>
+
+<nav class="navbar">
+    <div class="container">
+
+        <h4 class="center-title"><img src="LOGONAV.png" alt=""  widht="90px", height="90px"></h4>
+
+        
+        <div class="navbar-nav right">
+            </div>
+    </div>
+</nav>
+
+<body id="loginbody">
+
+<br><br><br><br><br><br><br>
+
+<div id="login">
+    <form id="LOGIN" action="VALIDA_LOGIN.PHP" method="POST">
+        <br><h1 class="Inicio">INICIAR SESIÓN</h1><br><br>
+        <label id="CCLOGIN">CORREO:</label>
+        <input type="email" name="Usuario" placeholder="Usuario" required><br>
+        <label id="CCLOGIN">CONTRASEÑA:</label>
+        <input type="password" name="Contraseña" placeholder="Contraseña" required>
+        <a href="RECUPERAR.PHP" id="RECUPERAR">¿Olvidaste la Contraseña?</a> <br>
+        <a href="registrate.html" id="RECUPERAR">¿No tienes cuenta?</a> <br>
+        <button id="button1">ENVIAR</button>
+
+        <?php
+        if (isset($_SESSION['ERROR'])) {
+            $ERROR = $_SESSION["ERROR"];
+            echo "<span>$ERROR</span>";
+            unset($_SESSION['ERROR']);  
+        }
+        ?>
+    </form>
+</div>
+
+<br><br>
+
+</div>
+</body>
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section about">
+          <img src="LOGONAV.png" alt="Logo de la Empresa" width="200px", height="200px">
+        </div>
+
+        <div class="footer-section contact">
+        <h5>EMPANADAS BUEN GUSTO</h5>
+          <p><i class="fa-solid fa-person"></i>: Alejandro Otoniel Camargo Pabón</p>
+          <p><i class="fa-solid fa-location-dot"></i>: Cra 10#6-64, Tunja, Colombia</p>
+          <p><i class="fa-solid fa-phone"></i>: 320 300 7631</p>
+          <p><i class="fa-solid fa-envelope"></i>: ottocamargo21@gmail.com</p>
+        </div>
+
+        <div class="footer-section links">
+          <h5>Redes Sociales</h5><br>
+            <a href="https://www.facebook.com/fredyalejandro.camargoleguizamopn.9?mibextid=ZbWKwL" class="text-reset">
+              <i class="fa-brands fa-facebook"></i>
+            </a><br><br>
+            <a href="https://wa.me/qr/SUPQHGT6OXOOL1" class="text-reset">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a><br><br>
+            <a href="https://www.instagram.com/alejo.13_29/profilecard/?igsh=MTBzb2o5YXJzNzgwOA==" class="text-reset">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+        </div>
+        
+        </div>
+          <div class="footer-bottom">
+          <i class="fa-regular fa-copyright"></i> ; 2024 Empanada Buen Gusto | Todos los derechos reservados
+        </div>
+</footer>
+
+</html>
